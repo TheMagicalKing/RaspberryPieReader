@@ -4,11 +4,12 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class PieReadClient {
 
-    static int port = 123456;
+    static int port = 420;
     static String host = "192.168.43.176";
     static DataInputStream in;
     static DataOutputStream out;
@@ -16,15 +17,21 @@ public class PieReadClient {
 
     public static void main(String[] args) {
         try{
+            while (true){
             System.out.println("Client startet");
             socket = new Socket(host,port);
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
             boolean serverMsg = true;
-            while (serverMsg = true){
-                System.out.println(in.readAllBytes());
+//            while (serverMsg = true) {
+                byte[] message = in.readAllBytes();
+                String str = new String(message, StandardCharsets.UTF_8);
+                System.out.println(str);
+                Thread.sleep(5000);
+                socket.close();
+
             }
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
     }
