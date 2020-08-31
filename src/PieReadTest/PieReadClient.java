@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 public class PieReadClient {
 
-    static int port = 8192;
-    static String host = "localhost";
+    static int port = 123456;
+    static String host = "192.168.43.176";
     static DataInputStream in;
     static DataOutputStream out;
     static Socket socket;
@@ -22,12 +22,7 @@ public class PieReadClient {
             out = new DataOutputStream(socket.getOutputStream());
             boolean serverMsg = true;
             while (serverMsg = true){
-                Scanner msg = new Scanner(System.in);
-                System.out.println("1 for at lukke clienten");
-                System.out.println("Send a message!");
-                out.writeUTF(msg.nextLine());
-                out.flush();
-                System.out.println(in.readUTF());
+                System.out.println(in.readAllBytes());
             }
         } catch (IOException e) {
             e.printStackTrace();
