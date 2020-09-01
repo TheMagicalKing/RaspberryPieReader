@@ -50,8 +50,8 @@ while True:
     if humidity is not None and temperature is not None:
         message = ('T{0:0.1f}  H{1:0.1f}'.format(temperature, humidity))
         c.send(message.encode('UTF-8'))
-        c.send(temperature)
-        c.send(humidity)
+        c.sendall(temperature)
+        c.sendall(humidity)
         
     else:
         print('Failed to get reading. Try again!')
