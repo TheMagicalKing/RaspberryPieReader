@@ -1,6 +1,7 @@
 import sys
 import socket
 import time
+import bcrypt
 
 import Adafruit_DHT
 
@@ -40,6 +41,9 @@ print ("socket binded to %s" %(port))
 
 s.listen(5)
 print ("socket is listening")
+message = ('T{0:0.1f}  H{1:0.1f}'.format(1, 2))
+hashedMessage = bcrypt.hashpw(message)
+print(hashedMessage)
 
 
 while True:
@@ -49,6 +53,7 @@ while True:
     print ("got connection from"), addr
     if humidity is not None and temperature is not None:
         message = ('T{0:0.1f}  H{1:0.1f}'.format(temperature, humidity))
+        hashedMessage = bcrypt.hashpw(message)
         c.send(message.encode('UTF-8'))
         strTemp = ("{0:0.1f}".format(temperature))
         strHumid = ("{0:0.1f}".format(humidity))

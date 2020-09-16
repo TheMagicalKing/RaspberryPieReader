@@ -3,7 +3,6 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/Downloads/openjfx-11.0.2_windows-x64_bin-sdk.zip!/" />
     </CLASSES>
-    <JAVADOC />
     <SOURCES />
   </library>
 </component>
